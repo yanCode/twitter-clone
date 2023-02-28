@@ -13,7 +13,7 @@ const Home: NextPage = () => {
         <title>Twitter Clone</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className='grid grid-cols-9'>
+      <main className='grid grid-cols-9 '>
         <Sidebar />
         <Feeds />
         <Widgets />
