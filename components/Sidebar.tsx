@@ -2,25 +2,28 @@ import SidebarRow from './SidebarRow'
 import {
   BellIcon,
   BookmarkIcon,
+  EllipsisHorizontalCircleIcon,
+  EnvelopeIcon,
   HashtagIcon,
   HomeIcon,
-  InformationCircleIcon,
-  ListBulletIcon,
+  RectangleStackIcon,
   UserIcon,
 } from '@heroicons/react/24/outline'
+import { NextPage } from 'next'
 
-function Sidebar() {
+const Sidebar: NextPage<never> = function() {
 
-  return (<aside>
+  return (<aside className='flex flex-col items-start'>
     <img src='https://links.papareact.com/drq' alt='' className='h-10' />
 
     <SidebarRow Icon={HomeIcon} title='Home' />
     <SidebarRow Icon={HashtagIcon} title='Explore' />
     <SidebarRow Icon={BellIcon} title='Notifications' />
-    <SidebarRow Icon={InformationCircleIcon} title='Messages' />
+    <SidebarRow Icon={EnvelopeIcon} title='Messages' />
     <SidebarRow Icon={BookmarkIcon} title='Bookmarks' />
-    <SidebarRow Icon={ListBulletIcon} title='Lists' />
+    <SidebarRow Icon={RectangleStackIcon} title='Lists' />
     <SidebarRow Icon={UserIcon} title='Sign In' />
+    <SidebarRow Icon={EllipsisHorizontalCircleIcon} title='More' />
   </aside>)
 }
 
