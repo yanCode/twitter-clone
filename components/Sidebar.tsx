@@ -11,10 +11,10 @@ import {
 } from '@heroicons/react/24/outline'
 import { NextPage } from 'next'
 
-const Sidebar: NextPage<never> = function() {
+const Sidebar: NextPage = function() {
 
-  return (<aside className='flex flex-col items-start'>
-    <img src='https://links.papareact.com/drq' alt='' className='h-10' />
+  return (<aside className='flex flex-col items-center col-span-2 px-4 md:items-start'>
+    <img src='https://links.papareact.com/drq' alt='' className='h-10 m-3' />
 
     <SidebarRow Icon={HomeIcon} title='Home' />
     <SidebarRow Icon={HashtagIcon} title='Explore' />
