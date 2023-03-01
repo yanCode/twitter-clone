@@ -9,7 +9,7 @@ export type TweetBody = {
   image?: string
 }
 
-export interface Tweet extends TweetBody {
+export interface ITweet extends TweetBody {
   _id: string
   _updatedAt: string
   _createdAt: string
@@ -18,5 +18,11 @@ export interface Tweet extends TweetBody {
   blockTweet: boolean
 }
 interface HomeProps {
-  tweets: Tweet[]
+  tweets: ITweet[]
+}
+interface FeedProps {
+  tweets: ITweet[]
+}
+interface TwitterProps{
+  tweet: ITweet
 }

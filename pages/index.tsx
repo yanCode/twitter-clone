@@ -9,7 +9,7 @@ import { fetchTweets } from '../utils/fetchTweets'
 import { HomeProps } from '../typings'
 
 const Home: NextPage<HomeProps> = ({ tweets }) => {
-  console.table(tweets)
+
   return (
     <div className='lg:max-w-6xl m-auto max-h-screen overflow-hidden'>
       <Head>
@@ -18,7 +18,7 @@ const Home: NextPage<HomeProps> = ({ tweets }) => {
       </Head>
       <main className='grid grid-cols-9 '>
         <Sidebar />
-        <Feeds />
+        <Feeds tweets={tweets} />
         <Widgets />
       </main>
     </div>
