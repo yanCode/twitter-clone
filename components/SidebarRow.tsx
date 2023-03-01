@@ -1,5 +1,6 @@
-import { IconType } from './types'
+
 import { NextPage } from 'next'
+import { IconType } from '../typings'
 
 interface SidebarRowProps {
   Icon: IconType;
