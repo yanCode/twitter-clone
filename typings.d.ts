@@ -48,3 +48,10 @@ interface FeedProps {
 interface TwitterProps {
   tweet: ITweet
 }
+
+export interface SidebarRowProps {
+  Icon: IconType;
+  title: string;
+  onClick?: () => {}
+
+}
