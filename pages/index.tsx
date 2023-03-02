@@ -7,6 +7,8 @@ import React from 'react'
 import Widgets from '../components/Widgets'
 import { fetchTweets } from '../utils/fetchTweets'
 import { HomeProps } from '../typings'
+import { Toast } from 'next/dist/client/components/react-dev-overlay/internal/components/Toast'
+import { Toaster } from 'react-hot-toast'
 
 const Home: NextPage<HomeProps> = ({ tweets }) => {
 
@@ -16,6 +18,7 @@ const Home: NextPage<HomeProps> = ({ tweets }) => {
         <title>Twitter Clone</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
+      <Toaster/>
       <main className='grid grid-cols-9 h-full overflow-y-scroll'>
         <Sidebar />
         <Feeds tweets={tweets} />
