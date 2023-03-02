@@ -17,7 +17,7 @@ const Feeds: NextPage<FeedProps> = ({ tweets: tweetProps }) => {
       id:refreshToast
     })
   }
-  return (<main className='col-span-7 lg:col-span-5 border-x overflow-auto'>
+  return (<main className='col-span-7 max-h-screen scrollbar-hide lg:col-span-5 border-x overflow-auto'>
     <div className='flex items-center justify-between'>
       <h1 className='p-5 pb-0 text-xl font-bold'>Home</h1>
       {/*refresh icon button*/}
