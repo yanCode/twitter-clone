@@ -5,10 +5,14 @@ import { UserPlusIcon } from '@heroicons/react/24/solid'
 import { fetchComments } from '../utils/fetchComments'
 import TimeAgo from 'react-timeago'
 import React, { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
 
 
 const Tweet: NextPage<TwitterProps> = ({ tweet }) => {
+  const { data: session } = useSession()
   const [comments, setComments] = useState<IComment[]>([])
+  const [commentInput, setCommentInput] = useState<string>('')
+  const [commentBoxVisible, setCommentBoxVisible] = useState(false)
   const refreshComments = async () => {
     const comments: IComment[] = await fetchComments(tweet._id)
     setComments(comments)
@@ -38,8 +42,12 @@ const Tweet: NextPage<TwitterProps> = ({ tweet }) => {
       </div>
       {/*footer column of icons, share/like, etc.*/}
       <footer className='mt-5 flex justify-around'>
-        <div className='flex cursor-pointer items-center justify-center gap-3 text-gray-400'>
-          <ChatBubbleBottomCenterIcon className='w-5 h-5' /> {comments.length}
+        <div
+          onClick={() => {
+            setCommentBoxVisible(!commentBoxVisible)
+          }} className='flex cursor-pointer items-center justify-center gap-3 text-gray-400'>
+          <ChatBubbleBottomCenterIcon
+            className='w-5 h-5' /> {comments.length}
         </div>
         <div className='flex cursor-pointer items-center justify-center gap-3 text-gray-400'>
           <HeartIcon className='w-5 h-5' /> 12
@@ -51,6 +59,19 @@ const Tweet: NextPage<TwitterProps> = ({ tweet }) => {
           <UserPlusIcon className='w-5 h-5' />
         </div>
       </footer>
+      {/*comment box*/}
+      {commentBoxVisible && session && (
+        <form className='mt-3 flex gap-3'>
+          <input
+            value={commentInput}
+            onChange={(e) => setCommentInput(e.target.value)}
+            className='flex-1 outline-none rounded-lg bg-gray-100 p-2'
+            type='text'
+            placeholder='write a comment' />
+          <button disabled={!commentInput} className='text-twitter disabled:text-gray-500'>Post</button>
+        </form>
+      )}
+      {/*comments length*/}
       {comments?.length > 0 && (
         <section className='my-2 mt-5 max-h-44 space-y-5  border-t border-gray-100 p-5'>
           {comments.map(comment => (
