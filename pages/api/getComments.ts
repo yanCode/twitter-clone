@@ -3,23 +3,24 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { client as sanityClient } from '../../sanity'
 
 import { groq } from 'next-sanity'
-import { ITweet } from '../../typings'
+import { IComment } from '../../typings'
 
 const feedQuery = groq`
-*[_type=='tweet' ] {
+*[_type=='comment' && references(*[_type=='tweet' && _id==$tweetId]._id)] {
   _id,
     ...
 } | order(_createdAt desc)
 `
 type Data = {
-  tweets: ITweet[]
+  comments: IComment[]
 }
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
-  const tweets: ITweet[] = await sanityClient.fetch(feedQuery)
+  const { tweetId } = req.query
+  const comments: IComment[] = await sanityClient.fetch(feedQuery, { tweetId })
 
-  res.status(200).json({ tweets })
+  res.status(200).json({ comments })
 }

@@ -16,7 +16,7 @@ const Home: NextPage<HomeProps> = ({ tweets }) => {
         <title>Twitter Clone</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className='grid grid-cols-9 '>
+      <main className='grid grid-cols-9 h-full overflow-y-scroll'>
         <Sidebar />
         <Feeds tweets={tweets} />
         <Widgets />
