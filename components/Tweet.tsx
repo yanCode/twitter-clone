@@ -31,7 +31,7 @@ const Tweet: NextPage<TwitterProps> = ({ tweet }) => {
           </div>
           <p className='pt-1'>{tweet.text}</p>
           {tweet.image && (
-            <img src={tweet.image} alt='' className='m-5  max-h-60 rounded-lg shadow-sm mb-1' />
+            <img src={tweet.image} alt='' className='m-5 object-contain w-full  max-h-60 rounded-lg shadow-sm mb-1' />
           )}
         </div>
 
