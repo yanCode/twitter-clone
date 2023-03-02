@@ -2,14 +2,9 @@ import { NextPage } from 'next'
 import { IComment, TwitterProps } from '../typings'
 import { ChatBubbleBottomCenterIcon, HeartIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { UserPlusIcon } from '@heroicons/react/24/solid'
-import ReactTimeAgo from 'react-time-ago'
-
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
 import { fetchComments } from '../utils/fetchComments'
-import { useEffect, useState } from 'react'
-
-TimeAgo.addDefaultLocale(en)
+import TimeAgo from 'react-timeago'
+import React, { useEffect, useState } from 'react'
 
 
 const Tweet: NextPage<TwitterProps> = ({ tweet }) => {
@@ -32,11 +27,7 @@ const Tweet: NextPage<TwitterProps> = ({ tweet }) => {
             <p className='hidden text-sm text-gray-500 sm:inline'>
               @{tweet.username.replace(/\s+/g, '').toLowerCase()} .
             </p>
-
-            <ReactTimeAgo
-              className='text-sm text-gray-599'
-              date={Date.parse(tweet._createdAt)}
-              locale='en' />
+            <TimeAgo date={Date.parse(tweet._createdAt)} className='text-sm text-gray-500' />
           </div>
           <p className='pt-1'>{tweet.text}</p>
           {tweet.image && (
@@ -65,17 +56,15 @@ const Tweet: NextPage<TwitterProps> = ({ tweet }) => {
           {comments.map(comment => (
             <div key={comment._id} className='relative flex gap-2'>
               <img src={comment.profileImage} className='h-7 mt-2 w-7 rounded-full object-cover' alt='' />
-              <hr className="absolute left-3.5 top-10 h-8 border-x border-twitter/20"/>
+              <hr className='absolute left-3.5 top-10 h-8 border-x border-twitter/20' />
               <div>
                 <div className='flex items-center gap-1'>
                   <p>{comment.username}</p>
                   <p className='hidden text-sm text-gray-500 lg:inline'>
                     @{comment.username.replace(/\s+/g, '').toLowerCase()} .
                   </p>
-                  <ReactTimeAgo
-                    className='text-sm text-gray-500'
-                    date={Date.parse(comment._createdAt)}
-                    locale='en' />
+                  <TimeAgo className='text-sm text-gray-500' date={Date.parse(comment._createdAt)} />
+                  1 month ago.
                 </div>
                 <p className='text-gray-600'>{comment.comment}</p>
               </div>

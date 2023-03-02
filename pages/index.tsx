@@ -7,7 +7,6 @@ import React from 'react'
 import Widgets from '../components/Widgets'
 import { fetchTweets } from '../utils/fetchTweets'
 import { HomeProps } from '../typings'
-import { Toast } from 'next/dist/client/components/react-dev-overlay/internal/components/Toast'
 import { Toaster } from 'react-hot-toast'
 
 const Home: NextPage<HomeProps> = ({ tweets }) => {
